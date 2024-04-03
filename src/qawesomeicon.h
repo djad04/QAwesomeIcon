@@ -21,6 +21,9 @@ public:
     explicit QAwesomeIcon(QObject* parent = nullptr);
     ~QAwesomeIcon() override;
 
+private:
+    class Impl;
+    Impl* d;
 };
 
 #endif // QAWESOMEICON_H

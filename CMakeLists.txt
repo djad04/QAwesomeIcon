@@ -18,6 +18,10 @@ set(LIBRARY_SOURCES
     src/qawesomeicon.h
     src/qawesomeicon.cpp
     src/qawesomeicon_global.h
+    src/animation/qawesomeanimationbackend.h
+    src/animation/qawesomeanimationbackend.cpp
+    src/animation/backends/qawesomegifbackend.h
+    src/animation/backends/qawesomegifbackend.cpp
 )
 
 # Build the library
