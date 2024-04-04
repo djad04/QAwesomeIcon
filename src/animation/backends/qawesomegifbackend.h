@@ -28,6 +28,9 @@ private:
     QVector<int> m_delays;
     QSize m_frameSize;
 
+    bool loadWithImageReader(QIODevice* dev);
+    bool loadWithQMovie(QIODevice* dev);
+    QImage scaled(const QImage& src, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode) const;
 };
 
 #endif // QAWESOMEGIFBACKEND_H
