@@ -63,3 +63,62 @@ bool QAwesomeGifBackend::loadWithImageReader(QIODevice* dev)
     qDebug() << "QAwesomeGifBackend: Total frames:" << m_frames.size() << "frameSize:" << m_frameSize;
     return !m_frames.isEmpty();
 }
+
+
+QImage QAwesomeGifBackend::renderFrame(int frameIndex, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode)
+{
+    if (m_frames.isEmpty()) return QImage();
+    if (frameIndex < 0) frameIndex = 0;
+    frameIndex %= m_frames.size();
+    QImage out = scaled(m_frames.at(frameIndex), targetLogicalSize, dpr, scaleMode);
+    qDebug() << "QAwesomeGifBackend: renderFrame index:" << frameIndex << "out size:" << out.size() << "targetLogicalSize:" << targetLogicalSize;
+    return out;
+}
+
+bool QAwesomeGifBackend::loadWithQMovie(QIODevice* dev)
+{
+    QMovie movie;
+    movie.setDevice(dev);
+    movie.setCacheMode(QMovie::CacheAll);
+
+    if (!movie.isValid()) {
+        qDebug() << "QAwesomeGifBackend: QMovie invalid";
+        return false;
+    }
+
+    movie.start();
+    movie.stop();
+
+    m_frames.clear();
+    m_delays.clear();
+
+    int count = movie.frameCount();
+    if (count <= 0) {
+        int guard = 0;
+        while (guard < 10000) {
+            QImage img = movie.currentImage();
+            if (img.isNull()) break;
+            if (m_frameSize.isEmpty()) m_frameSize = img.size();
+            m_frames.push_back(img.convertToFormat(QImage::Format_ARGB32_Premultiplied));
+            m_delays.push_back(movie.nextFrameDelay() > 0 ? movie.nextFrameDelay() : 33);
+            if (!movie.jumpToNextFrame()) break;
+            guard++;
+        }
+    } else {
+        for (int i = 0; i < count; ++i) {
+            movie.jumpToFrame(i);
+            QImage img = movie.currentImage();
+            if (i == 0 && !img.isNull() && m_frameSize.isEmpty()) m_frameSize = img.size();
+            if (!img.isNull()) {
+                m_frames.push_back(img.convertToFormat(QImage::Format_ARGB32_Premultiplied));
+                int delay = movie.nextFrameDelay();
+                if (delay <= 0) delay = 33;
+                m_delays.push_back(delay);
+                qDebug() << "QAwesomeGifBackend: QMovie frame" << i << "size:" << img.size() << "delay:" << delay << "ms";
+            }
+        }
+    }
+
+    qDebug() << "QAwesomeGifBackend: QMovie total frames:" << m_frames.size() << "frameSize:" << m_frameSize;
+    return !m_frames.isEmpty();
+}
