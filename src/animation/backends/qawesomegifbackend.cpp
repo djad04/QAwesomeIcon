@@ -64,6 +64,21 @@ bool QAwesomeGifBackend::loadWithImageReader(QIODevice* dev)
     return !m_frames.isEmpty();
 }
 
+int QAwesomeGifBackend::defaultFrameDelayMs(int frameIndex) const
+{
+    if (frameIndex < 0 || frameIndex >= m_delays.size()) return 33;
+    return m_delays.at(frameIndex);
+}
+
+QImage QAwesomeGifBackend::scaled(const QImage& src, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode) const
+{
+    if (targetLogicalSize.isEmpty()) return src;
+    QSize targetPx = targetLogicalSize * dpr;
+    Qt::AspectRatioMode arm = Qt::KeepAspectRatio;
+    if (scaleMode == QAwesomeScaleMode::IgnoreAspectRatio) arm = Qt::IgnoreAspectRatio;
+    else if (scaleMode == QAwesomeScaleMode::KeepAspectRatioByExpanding) arm = Qt::KeepAspectRatioByExpanding;
+    return src.scaled(targetPx, arm, Qt::SmoothTransformation);
+}
 
 QImage QAwesomeGifBackend::renderFrame(int frameIndex, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode)
 {
