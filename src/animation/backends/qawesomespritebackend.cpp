@@ -29,3 +29,21 @@ bool QAwesomeSpriteBackend::loadSpriteSheet(const QString& imagePath, const QSiz
     }
     return !m_frames.isEmpty();
 }
+
+QImage QAwesomeSpriteBackend::scaled(const QImage& src, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode) const
+{
+    if (targetLogicalSize.isEmpty()) return src;
+    QSize targetPx = targetLogicalSize * dpr;
+    Qt::AspectRatioMode arm = Qt::KeepAspectRatio;
+    if (scaleMode == QAwesomeScaleMode::IgnoreAspectRatio) arm = Qt::IgnoreAspectRatio;
+    else if (scaleMode == QAwesomeScaleMode::KeepAspectRatioByExpanding) arm = Qt::KeepAspectRatioByExpanding;
+    return src.scaled(targetPx, arm, Qt::SmoothTransformation);
+}
+
+QImage QAwesomeSpriteBackend::renderFrame(int frameIndex, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode)
+{
+    if (m_frames.isEmpty()) return QImage();
+    if (frameIndex < 0) frameIndex = 0;
+    frameIndex %= m_frames.size();
+    return scaled(m_frames.at(frameIndex), targetLogicalSize, dpr, scaleMode);
+}
