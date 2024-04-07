@@ -24,6 +24,8 @@ set(LIBRARY_SOURCES
     src/animation/backends/qawesomegifbackend.cpp
     src/animation/backends/qawesomespritebackend.h
     src/animation/backends/qawesomespritebackend.cpp
+    src/animation/backends/qawesomesvgbackend.h
+    src/animation/backends/qawesomesvgbackend.cpp
 )
 
 # Build the library
