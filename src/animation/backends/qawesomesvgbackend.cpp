@@ -36,3 +36,22 @@ bool QAwesomeSvgBackend::loadSvgSequence(const QStringList& svgPaths)
     if (!m_renderers.isEmpty()) m_defaultSize = m_renderers.first()->defaultSize();
     return !m_renderers.isEmpty();
 }
+
+QImage QAwesomeSvgBackend::renderSvg(QSvgRenderer* renderer, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode)
+{
+    QSize logical = targetLogicalSize.isEmpty() ? renderer->defaultSize() : targetLogicalSize;
+    QSize pixel = logical * dpr;
+
+    QImage img(pixel, QImage::Format_ARGB32_Premultiplied);
+    img.setDevicePixelRatio(dpr);
+    img.fill(Qt::transparent);
+    QPainter p(&img);
+    QRectF target(QPointF(0, 0), logical);
+    if (scaleMode == QAwesomeScaleMode::KeepAspectRatioByExpanding) {
+        QSizeF s = renderer->defaultSize();
+        target = QRectF(QPointF(0, 0), logical);
+    }
+    renderer->render(&p, target);
+    p.end();
+    return img;
+}
