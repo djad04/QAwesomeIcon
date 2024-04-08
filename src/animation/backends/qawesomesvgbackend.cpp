@@ -24,3 +24,15 @@ bool QAwesomeSvgBackend::loadFromData(const QByteArray& data)
     m_defaultSize = m_single->defaultSize();
     return true;
 }
+
+bool QAwesomeSvgBackend::loadSvgSequence(const QStringList& svgPaths)
+{
+    m_renderers.clear();
+    for (const QString& p : svgPaths) {
+        QSharedPointer<QSvgRenderer> r(new QSvgRenderer(p));
+        if (!r->isValid()) return false;
+        m_renderers.push_back(r);
+    }
+    if (!m_renderers.isEmpty()) m_defaultSize = m_renderers.first()->defaultSize();
+    return !m_renderers.isEmpty();
+}
