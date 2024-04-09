@@ -55,3 +55,16 @@ QImage QAwesomeSvgBackend::renderSvg(QSvgRenderer* renderer, const QSize& target
     p.end();
     return img;
 }
+
+QImage QAwesomeSvgBackend::renderFrame(int frameIndex, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode)
+{
+    if (!m_renderers.isEmpty()) {
+        if (frameIndex < 0) frameIndex = 0;
+        frameIndex %= m_renderers.size();
+        return renderSvg(m_renderers.at(frameIndex).data(), targetLogicalSize, dpr, scaleMode);
+    }
+    if (!m_single.isNull() && m_single->isValid()) {
+        return renderSvg(m_single.data(), targetLogicalSize, dpr, scaleMode);
+    }
+    return QImage();
+}
