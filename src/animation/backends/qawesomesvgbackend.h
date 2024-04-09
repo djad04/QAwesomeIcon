@@ -21,7 +21,7 @@ public:
     QSize frameSize() const override { return m_defaultSize; }
     int defaultFrameDelayMs(int) const override { return 33; }
 
-
+    QImage renderFrame(int frameIndex, const QSize& targetLogicalSize, qreal dpr, QAwesomeScaleMode scaleMode) override;
 
     bool isValid() const override { return !m_renderers.isEmpty() || (!m_single.isNull() && m_single->isValid()); }
 
