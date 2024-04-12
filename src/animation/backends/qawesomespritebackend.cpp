@@ -47,3 +47,17 @@ QImage QAwesomeSpriteBackend::renderFrame(int frameIndex, const QSize& targetLog
     frameIndex %= m_frames.size();
     return scaled(m_frames.at(frameIndex), targetLogicalSize, dpr, scaleMode);
 }
+
+
+bool QAwesomeSpriteBackend::loadFromFile(const QString &path)
+{
+    return false; //unsuported
+}
+
+
+
+bool QAwesomeSpriteBackend::loadFromData(const QByteArray &data)
+{
+    return false; // unsuported
+}
+

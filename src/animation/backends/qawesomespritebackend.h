@@ -10,6 +10,9 @@ class QAwesomeSpriteBackend : public QAwesomeAnimationBackend
 public:
     explicit QAwesomeSpriteBackend(QObject* parent = nullptr);
 
+    // unsupported here but has to be declared (QAwesomeAnimationBackend is abstract)
+    bool loadFromFile(const QString& path) override; // unsupported
+    bool loadFromData(const QByteArray& data) override; // unsupported
 
     bool loadSpriteSheet(const QString& imagePath, const QSize& frameSize, int frameCount, int framesPerRow = 0);
 
