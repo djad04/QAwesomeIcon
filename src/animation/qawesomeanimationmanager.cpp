@@ -44,4 +44,52 @@ bool QAwesomeAnimationManager::loadFromFile(const QString& path, QAwesomeAnimati
 }
 
 
+bool QAwesomeAnimationManager::loadFromData(const QByteArray& data, QAwesomeAnimationType type)
+{
+    QScopedPointer<QAwesomeAnimationBackend> backend;
+    if (type == QAwesomeAnimationType::GIF) {
+        backend.reset(new QAwesomeGifBackend);
+    } else if (type == QAwesomeAnimationType::SpriteSheet) {
+        backend.reset(new QAwesomeSpriteBackend);
+    } else if (type == QAwesomeAnimationType::SVGSequence) {
+        backend.reset(new QAwesomeSvgBackend);
+    } else {
+        emit errorOccurred(QStringLiteral("Unsupported data type"));
+        return false;
+    }
+
+    if (!backend->loadFromData(data)) {
+        emit errorOccurred(QStringLiteral("Failed to load animation from data"));
+        return false;
+    }
+    m_backend.swap(backend);
+    m_currentFrame = 0;
+    return true;
+}
+
+bool QAwesomeAnimationManager::loadSpriteSheet(const QString& imagePath, const QSize& frameSize, int frameCount, int framesPerRow)
+{
+    QScopedPointer<QAwesomeSpriteBackend> backend(new QAwesomeSpriteBackend);
+    if (!backend->loadSpriteSheet(imagePath, frameSize, frameCount, framesPerRow)) {
+        emit errorOccurred(QStringLiteral("Failed to load sprite sheet"));
+        return false;
+    }
+    m_backend.reset(backend.take());
+    m_currentFrame = 0;
+    return true;
+}
+
+bool QAwesomeAnimationManager::loadSvgSequence(const QStringList& svgPaths)
+{
+    QScopedPointer<QAwesomeSvgBackend> backend(new QAwesomeSvgBackend);
+    if (!backend->loadSvgSequence(svgPaths)) {
+        emit errorOccurred(QStringLiteral("Failed to load SVG sequence"));
+        return false;
+    }
+    m_backend.reset(backend.take());
+    m_currentFrame = 0;
+    return true;
+}
+
+
 

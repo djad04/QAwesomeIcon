@@ -22,6 +22,9 @@ public:
     //loaders
     bool loadFromFile(const QString& path, QAwesomeAnimationType type = QAwesomeAnimationType::None);
     bool loadFromData(const QByteArray& data, QAwesomeAnimationType type);
+    bool loadSpriteSheet(const QString &imagePath, const QSize &frameSize, int frameCount, int framesPerRow);
+    bool loadSvgSequence(const QStringList &svgPaths);
+
 
 signals:
     //error handeling:
