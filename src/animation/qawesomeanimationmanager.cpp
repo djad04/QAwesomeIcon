@@ -6,7 +6,13 @@
 
 QAwesomeAnimationManager::QAwesomeAnimationManager(QObject *parent)
 {
+    m_timer.setTimerType(Qt::PreciseTimer);
+    m_timer.setSingleShot(true);
+    connect(&m_timer, &QTimer::timeout, this, [this]() {
 
+
+
+    });
 }
 
 
@@ -92,4 +98,54 @@ bool QAwesomeAnimationManager::loadSvgSequence(const QStringList& svgPaths)
 }
 
 
+void QAwesomeAnimationManager::play(QAwesomeLoopMode loopMode)
+{
+    qDebug() << "QAwesomeAnimationManager: Play called with loop mode:" << (int)loopMode;
+    if (!m_backend) {
+        qDebug() << "QAwesomeAnimationManager: No backend loaded!";
+        emit errorOccurred(QStringLiteral("No backend loaded"));
+        return;
+    }
+    qDebug() << "QAwesomeAnimationManager: Backend exists, frame count:" << m_backend->frameCount()
+             << "target size:" << m_targetSize;
+    m_loopMode = loopMode;
+    m_state = QAwesomeAnimationState::Playing;
+    m_currentFrame = 0;
+    scheduleNextFrame(0);
+}
+
+void QAwesomeAnimationManager::pause()
+{
+    qDebug() << "QAwesomeAnimationManager: Pause called";
+    if (m_state == QAwesomeAnimationState::Playing) {
+        m_state = QAwesomeAnimationState::Paused;
+        m_timer.stop();
+    }
+}
+
+void QAwesomeAnimationManager::resume()
+{
+    qDebug() << "QAwesomeAnimationManager: Resume called";
+    if (m_state == QAwesomeAnimationState::Paused) {
+        m_state = QAwesomeAnimationState::Playing;
+        scheduleNextFrame(0);
+    }
+}
+
+void QAwesomeAnimationManager::stop()
+{
+    qDebug() << "QAwesomeAnimationManager: Stop called";
+    m_state = QAwesomeAnimationState::Stopped;
+    m_timer.stop();
+    m_currentFrame = 0;
+}
+
+
+
+void QAwesomeAnimationManager::scheduleNextFrame(int lastDelayMs)
+{
+    qDebug() << "QAwesomeAnimationManager: Scheduling next frame in" << lastDelayMs << "ms";
+    if (lastDelayMs <= 0) lastDelayMs = 0;
+    m_timer.start(lastDelayMs);
+}
 
