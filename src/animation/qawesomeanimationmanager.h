@@ -34,17 +34,27 @@ public:
     void pause();
     void resume();
     void stop();
+    void seek(int frameIndex);
 
+    void setFrameRate(int fps);
 signals:
+    void frameReady(const QImage& image);
+    void frameChanged(int index);
+    void finished();
     //error handeling:
     void errorOccurred(const QString& message);
 
 private:
     QScopedPointer<QAwesomeAnimationBackend> m_backend;
     QAtomicInteger<int> m_currentFrame {0};
+    QThread* m_workerThread = nullptr;
+
+    int m_fps = 0;
+    qreal m_speedFactor = 1.0;
 
     QAwesomeAnimationState m_state = QAwesomeAnimationState::Stopped;
     QAwesomeLoopMode m_loopMode = QAwesomeLoopMode::InfiniteLoop;
+    QAwesomeScaleMode m_scaleMode = QAwesomeScaleMode::KeepAspectRatio;
     QSize m_targetSize ; //TODO
 
     QTimer m_timer;
