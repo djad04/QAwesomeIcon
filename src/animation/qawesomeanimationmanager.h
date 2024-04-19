@@ -37,6 +37,18 @@ public:
     void seek(int frameIndex);
 
     void setFrameRate(int fps);
+    void setSpeedFactor(qreal factor);
+    void setScaleMode(QAwesomeScaleMode mode);
+    void setPriority(QAwesomeAnimationPriority priority);
+
+    // Info
+    int frameCount() const;
+    int currentFrame() const;
+    QSize frameSize() const;
+    QAwesomeAnimationState state() const;
+    qreal speedFactor() const { return m_speedFactor; }
+    int frameRate() const { return m_fps; }
+
 signals:
     void frameReady(const QImage& image);
     void frameChanged(int index);

@@ -197,10 +197,50 @@ void QAwesomeAnimationManager::seek(int frameIndex)
     m_currentFrame = frameIndex;
 }
 
+
 void QAwesomeAnimationManager::setFrameRate(int fps)
 {
     qDebug() << "QAwesomeAnimationManager: Setting frame rate to:" << fps;
     m_fps = fps;
+}
+
+void QAwesomeAnimationManager::setSpeedFactor(qreal factor)
+{
+    if (factor <= 0) factor = 0.1;
+    m_speedFactor = factor;
+    if (m_backend)
+        m_backend->setSpeedFactor(factor);
+}
+
+void QAwesomeAnimationManager::setScaleMode(QAwesomeScaleMode mode)
+{
+    m_scaleMode = mode;
+}
+
+void QAwesomeAnimationManager::setPriority(QAwesomeAnimationPriority priority)
+{
+    Q_UNUSED(priority)
+}
+
+
+int QAwesomeAnimationManager::frameCount() const
+{
+    return m_backend ? m_backend->frameCount() : 0;
+}
+
+int QAwesomeAnimationManager::currentFrame() const
+{
+    return m_currentFrame.loadRelaxed();
+}
+
+QSize QAwesomeAnimationManager::frameSize() const
+{
+    return m_backend ? m_backend->frameSize() : QSize();
+}
+
+QAwesomeAnimationState QAwesomeAnimationManager::state() const
+{
+    return m_state;
 }
 
 
