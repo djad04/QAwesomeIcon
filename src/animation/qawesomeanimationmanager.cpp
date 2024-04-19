@@ -242,7 +242,19 @@ QAwesomeAnimationState QAwesomeAnimationManager::state() const
 {
     return m_state;
 }
+void QAwesomeAnimationManager::onWorkerFrame(const QImage& image, int index)
+{
+    Q_UNUSED(image)
+    Q_UNUSED(index)
+}
 
+void QAwesomeAnimationManager::onWorkerError(const QString& message)
+{
+    emit errorOccurred(message);
+}
+
+void QAwesomeAnimationManager::ensureWorker() {}
+void QAwesomeAnimationManager::destroyWorker() {}
 
 void QAwesomeAnimationManager::scheduleNextFrame(int lastDelayMs)
 {
@@ -250,4 +262,5 @@ void QAwesomeAnimationManager::scheduleNextFrame(int lastDelayMs)
     if (lastDelayMs <= 0) lastDelayMs = 0;
     m_timer.start(lastDelayMs);
 }
+
 

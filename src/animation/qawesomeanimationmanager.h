@@ -56,6 +56,11 @@ signals:
     //error handeling:
     void errorOccurred(const QString& message);
 
+private slots:
+    void onWorkerFrame(const QImage& image, int index);
+    void onWorkerError(const QString& message);
+
+
 private:
     QScopedPointer<QAwesomeAnimationBackend> m_backend;
     QAtomicInteger<int> m_currentFrame {0};
@@ -72,6 +77,8 @@ private:
     QTimer m_timer;
 
 private:
+    void ensureWorker();
+    void destroyWorker();
     void scheduleNextFrame(int lastDelayMs);
 
 };
