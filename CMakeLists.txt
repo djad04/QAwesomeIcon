@@ -28,6 +28,8 @@ set(LIBRARY_SOURCES
     src/animation/backends/qawesomespritebackend.cpp
     src/animation/backends/qawesomesvgbackend.h
     src/animation/backends/qawesomesvgbackend.cpp
+    src/icon/qawesomeiconupdater.h
+    src/icon/qawesomeiconupdater.cpp
 )
 
 # Build the library
