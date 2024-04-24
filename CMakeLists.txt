@@ -30,6 +30,8 @@ set(LIBRARY_SOURCES
     src/animation/backends/qawesomesvgbackend.cpp
     src/icon/qawesomeiconupdater.h
     src/icon/qawesomeiconupdater.cpp
+    src/threading/qawesomeanimationworker.h
+    src/threading/qawesomeanimationworker.cpp
 )
 
 # Build the library
