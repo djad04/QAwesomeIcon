@@ -32,6 +32,8 @@ set(LIBRARY_SOURCES
     src/icon/qawesomeiconupdater.cpp
     src/threading/qawesomeanimationworker.h
     src/threading/qawesomeanimationworker.cpp
+    src/utils/qawesomeutils.h
+    src/utils/qawesomeutils.cpp
 )
 
 # Build the library
