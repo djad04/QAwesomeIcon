@@ -3,6 +3,7 @@
 
 #include "qawesomeicon_global.h"
 
+
 #include <QObject>
 #include <QIcon>
 #include <QPointer>
@@ -20,6 +21,16 @@ class QAWESOMEICON_EXPORT QAwesomeIcon : public QObject
 public:
     explicit QAwesomeIcon(QObject* parent = nullptr);
     ~QAwesomeIcon() override;
+    // Loading
+    bool loadFromFile(const QString& path, QAwesomeAnimationType type = QAwesomeAnimationType::None);
+    bool loadFromData(const QByteArray& data, QAwesomeAnimationType type);
+    bool loadSpriteSheet(const QString& imagePath, const QSize& frameSize, int frameCount, int framesPerRow = 0);
+    bool loadSvgSequence(const QStringList& svgPaths);
+
+signals:
+    void frameChanged(int index);
+    void finished();
+    void errorOccurred(const QString& message);
 
 private:
     class Impl;

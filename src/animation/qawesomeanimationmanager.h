@@ -49,6 +49,8 @@ public:
     qreal speedFactor() const { return m_speedFactor; }
     int frameRate() const { return m_fps; }
 
+    void requestTargetSize(const QSize& size) { m_targetSize = size; }
+
 signals:
     void frameReady(const QImage& image);
     void frameChanged(int index);
