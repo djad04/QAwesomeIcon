@@ -31,6 +31,13 @@ public:
     void attachToWindow(QWindow* window, QAwesomeIconTargets targets = QAwesomeIconTarget::All);
     void detach();
 
+    // Control
+    void play(QAwesomeLoopMode loopMode = QAwesomeLoopMode::InfiniteLoop);
+    void pause();
+    void resume();
+    void stop();
+    void seek(int frameIndex);
+
 signals:
     void frameChanged(int index);
     void finished();

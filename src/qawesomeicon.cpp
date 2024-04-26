@@ -87,3 +87,9 @@ void QAwesomeIcon::detach() {
     d->targetWidget = nullptr;
     d->targetWindow = nullptr;
 }
+
+void QAwesomeIcon::play(QAwesomeLoopMode loopMode) { d->manager.play(loopMode); }
+void QAwesomeIcon::pause() { d->manager.pause(); }
+void QAwesomeIcon::resume() { d->manager.resume(); }
+void QAwesomeIcon::stop() { d->manager.stop(); }
+void QAwesomeIcon::seek(int frameIndex) { d->manager.seek(frameIndex); }
