@@ -53,3 +53,37 @@ bool QAwesomeIcon::loadSpriteSheet(const QString& imagePath, const QSize& frameS
 bool QAwesomeIcon::loadSvgSequence(const QStringList& svgPaths) {
     return d->manager.loadSvgSequence(svgPaths);
 }
+
+
+
+void QAwesomeIcon::attachToWidget(QWidget* widget, QAwesomeIconTargets targets) {
+    d->targetWidget = widget;
+    d->targetWindow = nullptr;
+    d->targets = targets;
+    d->updater.attachToWidget(widget, targets);
+
+    // Update target size based on widget's icon requirements
+    QSize targetSize = d->updater.targetSize();
+    if (!targetSize.isEmpty()) {
+        d->manager.requestTargetSize(targetSize);
+    }
+}
+
+void QAwesomeIcon::attachToWindow(QWindow* window, QAwesomeIconTargets targets) {
+    d->targetWindow = window;
+    d->targetWidget = nullptr;
+    d->targets = targets;
+    d->updater.attachToWindow(window, targets);
+
+    // Update target size based on window's icon requirements
+    QSize targetSize = d->updater.targetSize();
+    if (!targetSize.isEmpty()) {
+        d->manager.requestTargetSize(targetSize);
+    }
+}
+
+void QAwesomeIcon::detach() {
+    d->updater.detach();
+    d->targetWidget = nullptr;
+    d->targetWindow = nullptr;
+}

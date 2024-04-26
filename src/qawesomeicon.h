@@ -26,6 +26,10 @@ public:
     bool loadFromData(const QByteArray& data, QAwesomeAnimationType type);
     bool loadSpriteSheet(const QString& imagePath, const QSize& frameSize, int frameCount, int framesPerRow = 0);
     bool loadSvgSequence(const QStringList& svgPaths);
+    // Targets
+    void attachToWidget(QWidget* widget, QAwesomeIconTargets targets = QAwesomeIconTarget::All);
+    void attachToWindow(QWindow* window, QAwesomeIconTargets targets = QAwesomeIconTarget::All);
+    void detach();
 
 signals:
     void frameChanged(int index);
