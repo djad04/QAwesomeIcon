@@ -31,16 +31,25 @@ public:
     QAwesomeIcon* q = nullptr;
 };
 
-
-QAwesomeIcon::QAwesomeIcon(QObject *parent)
-{
-
+QAwesomeIcon::QAwesomeIcon(QObject* parent) : QObject(parent), d(new Impl) {
+    d->q = this;
 }
 
+QAwesomeIcon::~QAwesomeIcon() { delete d; }
 
 
-QAwesomeIcon::~QAwesomeIcon()
-{
-
+bool QAwesomeIcon::loadFromFile(const QString& path, QAwesomeAnimationType type) {
+    return d->manager.loadFromFile(path, type);
 }
 
+bool QAwesomeIcon::loadFromData(const QByteArray& data, QAwesomeAnimationType type) {
+    return d->manager.loadFromData(data, type);
+}
+
+bool QAwesomeIcon::loadSpriteSheet(const QString& imagePath, const QSize& frameSize, int frameCount, int framesPerRow) {
+    return d->manager.loadSpriteSheet(imagePath, frameSize, frameCount, framesPerRow);
+}
+
+bool QAwesomeIcon::loadSvgSequence(const QStringList& svgPaths) {
+    return d->manager.loadSvgSequence(svgPaths);
+}
