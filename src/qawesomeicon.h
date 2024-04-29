@@ -38,6 +38,14 @@ public:
     void stop();
     void seek(int frameIndex);
 
+    // Settings
+    void setFrameRate(int fps);
+    void setSpeedFactor(qreal factor); // 1.0 normal
+    void setScaleMode(QAwesomeScaleMode mode);
+    void setIconSizes(const QList<QSize>& sizes); // for high DPI: 16, 24, 32, 48, 64, ...
+    void setDpr(qreal dpr);
+    void setPriority(QAwesomeAnimationPriority priority);
+
 signals:
     void frameChanged(int index);
     void finished();

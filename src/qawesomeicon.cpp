@@ -89,7 +89,32 @@ void QAwesomeIcon::detach() {
 }
 
 void QAwesomeIcon::play(QAwesomeLoopMode loopMode) { d->manager.play(loopMode); }
+
 void QAwesomeIcon::pause() { d->manager.pause(); }
+
 void QAwesomeIcon::resume() { d->manager.resume(); }
+
 void QAwesomeIcon::stop() { d->manager.stop(); }
+
 void QAwesomeIcon::seek(int frameIndex) { d->manager.seek(frameIndex); }
+
+
+void QAwesomeIcon::setFrameRate(int fps) { d->manager.setFrameRate(fps); }
+
+void QAwesomeIcon::setSpeedFactor(qreal factor) { d->manager.setSpeedFactor(factor); }
+
+void QAwesomeIcon::setScaleMode(QAwesomeScaleMode mode) { d->manager.setScaleMode(mode); }
+
+void QAwesomeIcon::setIconSizes(const QList<QSize>& sizes) {
+    d->updater.setIconSizes(sizes);
+    // Update target size for rendering
+    QSize targetSize = d->updater.targetSize();
+    if (!targetSize.isEmpty()) {
+        d->manager.requestTargetSize(targetSize);
+    }
+}
+void QAwesomeIcon::setDpr(qreal dpr) { d->updater.setDpr(dpr); }
+
+void QAwesomeIcon::setPriority(QAwesomeAnimationPriority priority) { d->manager.setPriority(priority); }
+
+
