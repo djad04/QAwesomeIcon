@@ -2,7 +2,7 @@
 #include "animation/qawesomeanimationmanager.h"
 #include "icon/qawesomeiconupdater.h"
 #include "utils/qawesomeutils.h"
-#include <qguiapplication.h>
+
 #include <QWidget>
 #include <QWindow>
 #include <QGuiApplication>
@@ -37,7 +37,6 @@ QAwesomeIcon::QAwesomeIcon(QObject* parent) : QObject(parent), d(new Impl) {
 
 QAwesomeIcon::~QAwesomeIcon() { delete d; }
 
-
 bool QAwesomeIcon::loadFromFile(const QString& path, QAwesomeAnimationType type) {
     return d->manager.loadFromFile(path, type);
 }
@@ -53,8 +52,6 @@ bool QAwesomeIcon::loadSpriteSheet(const QString& imagePath, const QSize& frameS
 bool QAwesomeIcon::loadSvgSequence(const QStringList& svgPaths) {
     return d->manager.loadSvgSequence(svgPaths);
 }
-
-
 
 void QAwesomeIcon::attachToWidget(QWidget* widget, QAwesomeIconTargets targets) {
     d->targetWidget = widget;
@@ -88,22 +85,37 @@ void QAwesomeIcon::detach() {
     d->targetWindow = nullptr;
 }
 
-void QAwesomeIcon::play(QAwesomeLoopMode loopMode) { d->manager.play(loopMode); }
+void QAwesomeIcon::play(QAwesomeLoopMode loopMode) {
+    d->manager.play(loopMode);
+}
 
-void QAwesomeIcon::pause() { d->manager.pause(); }
+void QAwesomeIcon::pause() {
+    d->manager.pause();
+}
 
-void QAwesomeIcon::resume() { d->manager.resume(); }
+void QAwesomeIcon::resume() {
+    d->manager.resume();
+}
 
-void QAwesomeIcon::stop() { d->manager.stop(); }
+void QAwesomeIcon::stop() {
+    d->manager.stop();
+}
 
-void QAwesomeIcon::seek(int frameIndex) { d->manager.seek(frameIndex); }
+void QAwesomeIcon::seek(int frameIndex) {
+    d->manager.seek(frameIndex);
+}
 
+void QAwesomeIcon::setFrameRate(int fps) {
+    d->manager.setFrameRate(fps);
+}
 
-void QAwesomeIcon::setFrameRate(int fps) { d->manager.setFrameRate(fps); }
+void QAwesomeIcon::setSpeedFactor(qreal factor) {
+    d->manager.setSpeedFactor(factor);
+}
 
-void QAwesomeIcon::setSpeedFactor(qreal factor) { d->manager.setSpeedFactor(factor); }
-
-void QAwesomeIcon::setScaleMode(QAwesomeScaleMode mode) { d->manager.setScaleMode(mode); }
+void QAwesomeIcon::setScaleMode(QAwesomeScaleMode mode) {
+    d->manager.setScaleMode(mode);
+}
 
 void QAwesomeIcon::setIconSizes(const QList<QSize>& sizes) {
     d->updater.setIconSizes(sizes);
@@ -113,15 +125,39 @@ void QAwesomeIcon::setIconSizes(const QList<QSize>& sizes) {
         d->manager.requestTargetSize(targetSize);
     }
 }
-void QAwesomeIcon::setDpr(qreal dpr) { d->updater.setDpr(dpr); }
+void QAwesomeIcon::setDpr(qreal dpr) {
+    d->updater.setDpr(dpr);
+}
 
-void QAwesomeIcon::setPriority(QAwesomeAnimationPriority priority) { d->manager.setPriority(priority); }
+void QAwesomeIcon::setPriority(QAwesomeAnimationPriority priority) {
+    d->manager.setPriority(priority);
+}
 
 
-int QAwesomeIcon::frameCount() const { return d->manager.frameCount(); }
-int QAwesomeIcon::currentFrame() const { return d->manager.currentFrame(); }
-QSize QAwesomeIcon::frameSize() const { return d->manager.frameSize(); }
-QAwesomeAnimationState QAwesomeIcon::state() const { return d->manager.state(); }
-qreal QAwesomeIcon::speedFactor() const { return d->manager.speedFactor(); }
-int QAwesomeIcon::frameRate() const { return d->manager.frameRate(); }
+int QAwesomeIcon::frameCount() const {
+    return d->manager.frameCount();
+}
 
+int QAwesomeIcon::currentFrame() const {
+    return d->manager.currentFrame();
+}
+
+QSize QAwesomeIcon::frameSize() const {
+    return d->manager.frameSize();
+}
+
+
+QAwesomeAnimationState QAwesomeIcon::state() const {
+    return d->manager.state();
+}
+
+qreal QAwesomeIcon::speedFactor() const {
+    return d->manager.speedFactor();
+}
+
+int QAwesomeIcon::frameRate() const {
+    return d->manager.frameRate();
+}
+
+
+#include "qawesomeicon.moc"
