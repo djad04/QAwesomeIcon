@@ -46,6 +46,14 @@ public:
     void setDpr(qreal dpr);
     void setPriority(QAwesomeAnimationPriority priority);
 
+    // Info
+    int frameCount() const;
+    int currentFrame() const;
+    QSize frameSize() const;
+    QAwesomeAnimationState state() const;
+    qreal speedFactor() const;
+    int frameRate() const;
+
 signals:
     void frameChanged(int index);
     void finished();

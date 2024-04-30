@@ -118,3 +118,10 @@ void QAwesomeIcon::setDpr(qreal dpr) { d->updater.setDpr(dpr); }
 void QAwesomeIcon::setPriority(QAwesomeAnimationPriority priority) { d->manager.setPriority(priority); }
 
 
+int QAwesomeIcon::frameCount() const { return d->manager.frameCount(); }
+int QAwesomeIcon::currentFrame() const { return d->manager.currentFrame(); }
+QSize QAwesomeIcon::frameSize() const { return d->manager.frameSize(); }
+QAwesomeAnimationState QAwesomeIcon::state() const { return d->manager.state(); }
+qreal QAwesomeIcon::speedFactor() const { return d->manager.speedFactor(); }
+int QAwesomeIcon::frameRate() const { return d->manager.frameRate(); }
+
