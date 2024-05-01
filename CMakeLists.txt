@@ -67,6 +67,24 @@ set_target_properties(QAwesomeIconLib PROPERTIES
 # Define library macros
 target_compile_definitions(QAwesomeIconLib PRIVATE QAWESOMEICON_LIBRARY)
 
+# Build example application
+set(EXAMPLE_SOURCES
+    examples/main.cpp
+    examples/mainwindow.cpp
+    examples/mainwindow.h
+    examples/mainwindow.ui
+)
+
+add_executable(QAwesomeIconExample ${EXAMPLE_SOURCES})
+
+# Avoid QDataStream dependency in moc-generated code for example as well
+target_compile_definitions(QAwesomeIconExample PRIVATE QT_NO_DATASTREAM)
+
+target_link_libraries(QAwesomeIconExample PRIVATE
+    QAwesomeIconLib
+    Qt${QT_VERSION_MAJOR}::Widgets
+    Qt${QT_VERSION_MAJOR}::Gui
+)
 
 # Platform-specific settings
 if(WIN32)
@@ -103,7 +121,10 @@ install(DIRECTORY src/
     FILES_MATCHING PATTERN "*.h"
 )
 
-
+install(TARGETS QAwesomeIconExample
+    BUNDLE DESTINATION .
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+)
 
 # Export targets
 install(EXPORT QAwesomeIconTargets
@@ -125,4 +146,6 @@ install(FILES
     DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/QAwesomeIcon
 )
 
-
+if(QT_VERSION_MAJOR EQUAL 6)
+    qt_finalize_executable(QAwesomeIconExample)
+endif()
