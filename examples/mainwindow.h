@@ -21,11 +21,29 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void onLoadGif();
+    void onLoadSpriteSheet();
+    void onLoadSvgSequence();
+    void onLoadLottie();
+    void onPlay();
+    void onPause();
+    void onStop();
+    void onFrameChanged(int index);
+    void onAnimationFinished();
+    void onAnimationError(const QString& message);
+    void onFrameReady(const QImage& image); // New slot for preview
+
+
 private:
     Ui::MainWindow *ui;
     QScopedPointer<QAwesomeIcon> m_awesomeIcon;
     QLabel* m_statusLabel;
     QLabel* m_previewLabel;
+
+    void setupUI();
+    void setupConnections();
+    void updateStatus(const QString& text);
 };
 
 #endif // MAINWINDOW_H
