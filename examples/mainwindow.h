@@ -25,7 +25,6 @@ private slots:
     void onLoadGif();
     void onLoadSpriteSheet();
     void onLoadSvgSequence();
-    void onLoadLottie();
     void onPlay();
     void onPause();
     void onStop();

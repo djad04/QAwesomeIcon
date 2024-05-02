@@ -73,6 +73,8 @@ set(EXAMPLE_SOURCES
     examples/mainwindow.cpp
     examples/mainwindow.h
     examples/mainwindow.ui
+    examples/spritesheetparamsdialog.cpp
+    examples/spritesheetparamsdialog.h
 )
 
 add_executable(QAwesomeIconExample ${EXAMPLE_SOURCES})

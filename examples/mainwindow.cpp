@@ -73,3 +73,15 @@ void MainWindow::updateStatus(const QString& text)
 {
     if (m_statusLabel) m_statusLabel->setText(text);
 }
+
+
+void MainWindow::onLoadGif()
+{
+    QString f = QFileDialog::getOpenFileName(this, "Open GIF", QString(), "GIF Files (*.gif)");
+    if (f.isEmpty()) return;
+    if (m_awesomeIcon->loadFromFile(f, QAwesomeAnimationType::GIF)) {
+        updateStatus("GIF loaded: " + f);
+    } else {
+        updateStatus("Failed to load GIF");
+    }
+}
