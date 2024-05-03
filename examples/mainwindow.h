@@ -33,13 +33,12 @@ private slots:
     void onAnimationError(const QString& message);
     void onFrameReady(const QImage& image); // New slot for preview
 
-
 private:
     Ui::MainWindow *ui;
     QScopedPointer<QAwesomeIcon> m_awesomeIcon;
     QLabel* m_statusLabel;
-    QLabel* m_previewLabel;
-
+    QLabel* m_previewLabel; // New preview label
+    
     void setupUI();
     void setupConnections();
     void updateStatus(const QString& text);

@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "examples/ui_mainwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QFileDialog>
@@ -8,7 +7,6 @@
 #include <QStatusBar>
 #include <QVBoxLayout>
 #include "spritesheetparamsdialog.h"
-
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -32,6 +30,7 @@ void MainWindow::setupUI()
     auto aLoadGif = tb->addAction("Load GIF");
     auto aLoadSprite = tb->addAction("Load Sprite");
     auto aLoadSvgSeq = tb->addAction("Load SVG Seq");
+    tb->addSeparator();
     auto aPlay = tb->addAction("Play");
     auto aPause = tb->addAction("Pause");
     auto aStop = tb->addAction("Stop");
@@ -74,7 +73,6 @@ void MainWindow::updateStatus(const QString& text)
     if (m_statusLabel) m_statusLabel->setText(text);
 }
 
-
 void MainWindow::onLoadGif()
 {
     QString f = QFileDialog::getOpenFileName(this, "Open GIF", QString(), "GIF Files (*.gif)");
@@ -84,4 +82,86 @@ void MainWindow::onLoadGif()
     } else {
         updateStatus("Failed to load GIF");
     }
+}
+
+void MainWindow::onLoadSpriteSheet()
+{
+    QString f = QFileDialog::getOpenFileName(this, "Open Sprite Sheet", QString(), "Images (*.png *.jpg *.jpeg)");
+    if (f.isEmpty()) return;
+    
+    // Show dialog to get sprite sheet parameters
+    SpriteSheetParamsDialog dialog(this);
+    if (dialog.exec() != QDialog::Accepted) return;
+    
+    QSize frameSize = dialog.getFrameSize();
+    int frameCount = dialog.getFrameCount();
+    int framesPerRow = dialog.getFramesPerRow();
+    
+    if (m_awesomeIcon->loadSpriteSheet(f, frameSize, frameCount, framesPerRow)) {
+        updateStatus(QString("Sprite sheet loaded: %1 (%2x%3, %4 frames, %5 per row)")
+                    .arg(f).arg(frameSize.width()).arg(frameSize.height()).arg(frameCount).arg(framesPerRow));
+    } else {
+        updateStatus("Failed to load sprite sheet");
+    }
+}
+
+void MainWindow::onLoadSvgSequence()
+{
+    QStringList files = QFileDialog::getOpenFileNames(this, "Open SVG Sequence", QString(), "SVG Files (*.svg)");
+    if (files.isEmpty()) return;
+    if (m_awesomeIcon->loadSvgSequence(files)) {
+        updateStatus("SVG sequence loaded");
+    } else {
+        updateStatus("Failed to load SVG sequence");
+    }
+}
+
+void MainWindow::onPlay()
+{
+    m_awesomeIcon->play(QAwesomeLoopMode::InfiniteLoop);
+    updateStatus("Playing");
+}
+
+void MainWindow::onPause()
+{
+    m_awesomeIcon->pause();
+    updateStatus("Paused");
+}
+
+void MainWindow::onStop()
+{
+    m_awesomeIcon->stop();
+    updateStatus("Stopped");
+}
+
+void MainWindow::onFrameChanged(int index)
+{
+    statusBar()->showMessage(QString("Frame: %1").arg(index), 2000);
+    // Try to fetch the largest icon pixmap and show in preview
+    if (m_previewLabel) {
+        QIcon icon = windowIcon();
+        QSize sz = m_previewLabel->size().boundedTo(QSize(512, 512));
+        QPixmap pm = icon.pixmap(sz);
+        if (!pm.isNull()) {
+            m_previewLabel->setPixmap(pm);
+        }
+    }
+}
+
+void MainWindow::onAnimationFinished()
+{
+    updateStatus("Finished");
+}
+
+void MainWindow::onAnimationError(const QString& message)
+{
+    updateStatus("Error: " + message);
+}
+
+void MainWindow::onFrameReady(const QImage& image)
+{
+    if (!m_previewLabel) return;
+    if (image.isNull()) return;
+    QPixmap pm = QPixmap::fromImage(image.scaled(m_previewLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation));
+    m_previewLabel->setPixmap(pm);
 }
