@@ -65,7 +65,7 @@ void MainWindow::setupConnections()
     connect(m_awesomeIcon.data(), &QAwesomeIcon::frameChanged, this, &MainWindow::onFrameChanged);
     connect(m_awesomeIcon.data(), &QAwesomeIcon::finished, this, &MainWindow::onAnimationFinished);
     connect(m_awesomeIcon.data(), &QAwesomeIcon::errorOccurred, this, &MainWindow::onAnimationError);
-    m_awesomeIcon->setIconSizes({ QSize(128,128), QSize(256,256) });
+    m_awesomeIcon->setIconSizes({ QSize(512,512), QSize(512,512) });
 }
 
 void MainWindow::updateStatus(const QString& text)
