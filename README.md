@@ -35,9 +35,11 @@ Tired of boring static loading indicators? Transform your app's loading experien
 - Background tasks
 
 **gear.gif**  Perfect for settings, configuration, or system operations
+
 ![gear](examples/gifs/gear.gif)
 
 **LoadingCircle.gif**  Classic spinning loader
+
 ![LoadingCircle](examples/gifs/LoadingCircle.gif)
 
 
@@ -58,12 +60,15 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 - **Avatar of the current Open chat**:see the avatar of the user you are talking to directly from the task bar and see the avatar talking when he is typing
 
 **PointsLoading.gif** - Use this as a "typing indicator" 
+
 ![PointsLoading](examples/gifs/PointsLoading.gif)
 
 **Texting.gif**  Perfect for messaging apps and chat applications
+
 ![Texting](examples/gifs/Texting.gif)
 
 **SendingMessage.gif**  Ideal for email clients and instant messaging
+
 ![SendingMessage](examples/gifs/SendingMessage.gif)
 
 
@@ -83,9 +88,11 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 **No limite you can even show high quality animations:**
 
 **CatAnimation.gif** 
+
 ![CatAnimation](examples/gifs/CatAnimation.gif)
 
 **PlanetAnimation.gif**
+
 ![PlanetAnimation](examples/gifs/PlanetAnimation.gif)
 
 ---
@@ -93,6 +100,7 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 ## ⚠️ **Error States & Feedback - Make Problems Beautiful**
 
 **Error.gif**  Even errors can be engaging! Perfect for dialogs, warnings, and critical alerts and can be seen even if the app is minimized
+
 ![Error](examples/gifs/Error.gif)
 
 ---
@@ -270,6 +278,7 @@ QAwesomeIcon represents a fundamental shift in how we approach software interfac
 The project includes a comprehensive example application that demonstrates all features using the included GIF animations:
 
 ### **Live Demo Animations**
+
 ![Live Demo](examples/demo/exempleapp.png)
 
 ```bash
