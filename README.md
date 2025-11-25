@@ -338,6 +338,9 @@ The project includes a comprehensive example application that demonstrates all f
 - `QAwesomeAnimationPriority`: Animation priority levels
 - `QAwesomeIconTarget`: Icon attachment targets
 
+## Support
+If you liked the idea of QAwesomeIcon and find it useful, don't forget to ⭐ star the repository!
+
 ## License
 
 MIT License
