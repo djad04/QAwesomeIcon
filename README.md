@@ -17,13 +17,13 @@ Your app's taskbar icon is always visible, even when your app is minimized. Why 
 - **Easy Integration**: Simple API for attaching animations to Qt widgets directly
 - **Unlimited Creative Potential**: Thousands of innovative use cases waiting to be discovered
 
-## 🚀 Creative Use Cases - The Future of Software Interfaces
+##  Creative Use Cases - The Future of Software Interfaces
 
 I can think of **thousands of creative ways** to use QAwesomeIcon! Let me show you some of the possibilities:
 
 ---
 
-## 🔄 **Loading States - Who Wants Boring Loading?**
+##  **Loading States - Who Wants Boring Loading?**
 
 Tired of boring static loading indicators? Transform your app's loading experience with animated icons that show **exactly** what's happening even from the Windows taskbar!
  and once the loading is finished you can see it directly without opening the app
@@ -44,11 +44,11 @@ Tired of boring static loading indicators? Transform your app's loading experien
 
 
 
-> 💡 **note**: Users can see your app's loading state even when it's minimized in the taskbar!
+>  **note**: Users can see your app's loading state even when it's minimized in the taskbar!
 
 ---
 
-## 💬 **Message & Communication - Add Creativity to Every Chat**
+##  **Message & Communication - Add Creativity to Every Chat**
 
 Make messaging apps come alive! Show typing indicators, message sending status, and communication states with engaging animations.
 
@@ -73,11 +73,11 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 
 
 
-> 🎯 **Game Changer**: Your users will know exactly when someone is typing, even from the taskbar!
+>  **Game Changer**: Your users will know exactly when someone is typing, even from the taskbar!
 
 ---
 
-## 🎮 **Gaming & Creative Applications - Bring Characters to Life**
+##  **Gaming & Creative Applications - Bring Characters to Life**
 
 ### **Possible Ideas:**
 - Character animations and states
@@ -97,7 +97,7 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 
 ---
 
-## ⚠️ **Error States & Feedback - Make Problems Beautiful**
+##  **Error States & Feedback - Make Problems Beautiful**
 
 **Error.gif**  Even errors can be engaging! Perfect for dialogs, warnings, and critical alerts and can be seen even if the app is minimized
 
@@ -105,29 +105,29 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 
 ---
 
-## 🌟 **Even More Creative Ideas**
+##  **Even More Creative Ideas**
 
-### **🎨 Creative Industries**
+### ** Creative Industries**
 - **Art Tools**: Animated brushes, color mixing, layer management
 - **Music Production**: Audio waveforms, effect processing, recording status
 - **Video Editing**: Timeline scrubbing, rendering progress, clip transitions
 
-### **🏢 Business Applications**
+### ** Business Applications**
 - **Dashboard Analytics**: Real-time data visualization, KPI indicators
 - **Project Management**: Task progress, team collaboration status
 - **E-commerce**: Shopping cart animations, payment processing, inventory updates
 
-### **🔧 Developer Tools**
+### ** Developer Tools**
 - **Code Editors**: Syntax highlighting animations, compilation progress
 - **Version Control**: Git status animations, merge conflicts, deployment progress
 - **Testing**: Test execution progress, coverage reports, quality metrics
 
-### **🌐 Web & Cloud Services**
+### ** Web & Cloud Services**
 - **Cloud Storage**: File sync status, upload progress, storage capacity
 - **Web Browsers**: Tab loading, download progress, security status
 - **APIs**: Request/response cycles, rate limiting, service health
 
-### **🎯 User Experience Innovations**
+### ** User Experience Innovations**
 - **Micro-interactions**: Button hover effects, form validation, user feedback
 - **Accessibility**: Visual cues for hearing impaired users, attention grabbing alerts
 - **Gamification**: Achievement unlocks, progress bars, reward systems
@@ -144,11 +144,6 @@ Make messaging apps come alive! Show typing indicators, message sending status, 
 
 lottie animations are planned for the future
 
-## Requirements
-
-- Qt 5.15+ or Qt 6.x
-- CMake 3.16+
-- C++17 compatible compiler
 
 ### Qt Components Required
 - Qt Core
@@ -254,7 +249,7 @@ icon->setIconSizes(sizes);
 icon->setDpr(2.0); // For 2x displays
 ```
 
-## 🎨 The Creative Revolution in Software Development
+##  The Creative Revolution in Software Development
 
 QAwesomeIcon represents a fundamental shift in how we approach software interfaces. Instead of static, lifeless icons, we can now create:
 
@@ -346,4 +341,4 @@ If you liked the idea of QAwesomeIcon and find it useful, don't forget to ⭐ st
 MIT License
 
 ### Version 1.0.0
-- Initial release
+- Initial release feel free to give more improvements and ideas on how to make it better the animation system for now still has lot of possible improvements
