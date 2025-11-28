@@ -1,6 +1,6 @@
 # QAwesomeIcon : real-time taskbar animated Icons
 
-A revolutionary Qt library that transforms how we think about software interfaces through animated icons. **the first library of its kind** , a creative paradigm shift that opens up thousands of innovative ways to enhance user experience and software interaction. QAwesomeIcon supports multiple animation formats including GIF, sprite sheets, and SVG sequences, providing an intuitive API for creating dynamic window icons, taskbar icons, and system tray icons that bring your applications to life.
+ Qt library that transforms how we think about software interfaces through animated icons.  a creative paradigm shift that opens up thousands of innovative ways to enhance user experience and software interaction. QAwesomeIcon supports multiple animation formats including GIF, sprite sheets, and SVG sequences, providing an intuitive API for creating dynamic window icons, taskbar icons, and system tray icons that bring your applications to life.
 
 >  **No more boring Icons lets give a shoot to some Creativity** 
 
