@@ -7,15 +7,6 @@
 ## Why Use it ?
 Your app's taskbar icon is always visible, even when your app is minimized. Why not make it useful? QAwesomeIcon lets you communicate status, progress, and activity through that tiny icon at the bottom of the screen
 
-## Revolutionary Features
-
-- **Creative Paradigm Shift**: Transform static interfaces into dynamic, engaging experiences
-- **Multiple Animation Formats**: Support for GIF, sprite sheets, and SVG sequences
-- **Cross-Platform**: Works on Windows, macOS, and Linux
-- **High DPI Support**: Automatic scaling for different display densities
-- **Flexible Control**: Play, pause, stop, seek, and loop controls
-- **Easy Integration**: Simple API for attaching animations to Qt widgets directly
-- **Unlimited Creative Potential**: Thousands of innovative use cases waiting to be discovered
 
 ##  Creative Use Cases - The Future of Software Interfaces
 
